@@ -6,10 +6,11 @@ import Legs from 'components/Legs';
 import Arm from 'components/Arm';
 import Eyes from 'components/Eyes';
 import Mouth from 'components/Mouth';
+import Top from 'components/Top';
 
 class Monster extends React.Component {
   buildMonster = (genes) => {
-    const color = genes.substr(7, 10);
+    const color = genes.substr(8, 11);
     const headType = parseInt(genes.charAt(0), 10);
     const bodyType = parseInt(genes.charAt(1), 10);
     const eyesType = parseInt(genes.charAt(2), 10);
@@ -17,6 +18,7 @@ class Monster extends React.Component {
     const leftArmType = parseInt(genes.charAt(4), 10);
     const rightArmType = parseInt(genes.charAt(5), 10);
     const legsType = parseInt(genes.charAt(6), 10);
+    const topType = parseInt(genes.charAt(7), 10);
     return (
       <div>
         <Head type={headType} color={color} />
@@ -26,6 +28,7 @@ class Monster extends React.Component {
         <Arm type={leftArmType} color={color} left />
         <Arm type={rightArmType} color={color} right />
         <Legs type={legsType} color={color} />
+        <Top type={topType} color={color} /> 
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import exampleMonsters from 'img/examples.png';
 
 class Home extends React.Component {
   render() {
@@ -18,6 +19,10 @@ class Home extends React.Component {
                 Start now
               </Link>
             </div>
+          </div>
+
+          <div className="column">
+            <img src={exampleMonsters} alt="Examples" width={500} />
           </div>
         </div>
       </div>

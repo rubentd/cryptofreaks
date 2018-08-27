@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
+    "color": "^3.0.0",
     "drizzle": "^1.2.3",
     "drizzle-react": "^1.2.0",
     "history": "^4.7.2",

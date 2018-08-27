@@ -1,5 +1,6 @@
 import React from 'react';
-import { string } from 'prop-types';
+import { bool, string } from 'prop-types';
+import Color from 'color';
 import wuami from 'wuami';
 import Head from 'components/Head';
 import Body from 'components/Body';
@@ -61,11 +62,15 @@ class MonsterImage extends React.Component {
   render () {
     const {
       genes,
+      small,
     } = this.props;
-    const { name } = this.state;
+
+    const colorIndex = genes.charCodeAt(8) % 11;
+    const color = COLORS[colorIndex];
+    const backgroundColor = Color(color).rotate(90).lighten(0.4).desaturate(0.4);
 
     return (
-      <div className="monster-display">
+      <div className={`monster-display ${small ? 'small' : ''}`} style={{ backgroundColor }}>
         <div className="monster-wrap">
           { this.buildMonster(genes) }
         </div>
@@ -76,6 +81,7 @@ class MonsterImage extends React.Component {
 
 MonsterImage.propTypes = {
   genes: string.isRequired,
+  small: bool,
 };
 
 export default MonsterImage;

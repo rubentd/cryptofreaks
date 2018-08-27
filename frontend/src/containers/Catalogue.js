@@ -1,5 +1,6 @@
 import React from 'react';
 import { object } from 'prop-types';
+import { Link } from 'react-router-dom';
 import { CONTRACT_NAME } from 'config';
 import MonsterItem from 'components/MonsterItem';
 
@@ -58,7 +59,9 @@ class Catalogue extends React.Component {
                 {
                   monsters.map((monster) => (
                     <li key={monster.id}>
-                      <MonsterItem {...monster} />
+                      <Link to={`monster/${monster.id}`}>
+                        <MonsterItem {...monster} />
+                      </Link>
                     </li>
                   ))
                 }

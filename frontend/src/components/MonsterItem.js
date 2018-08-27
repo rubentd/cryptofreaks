@@ -12,7 +12,7 @@ class MonsterItem extends React.Component {
 
     return (
       <div>
-        <MonsterImage genes={genes}/>
+        <MonsterImage genes={genes} small/>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { number, string } from 'prop-types';
+import { string } from 'prop-types';
+import wuami from 'wuami';
 import Head from 'components/Head';
 import Body from 'components/Body';
 import Legs from 'components/Legs';
@@ -9,7 +10,27 @@ import Mouth from 'components/Mouth';
 import Top from 'components/Top';
 import { COLORS } from 'util/constants';
 
-class Monster extends React.Component {
+class MonsterImage extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      name: '',
+    };
+  }
+
+  componentWillMount() {
+    const { genes } = this.props;
+    wuami(genes).then((name) => {
+      this.setState({
+        name,
+      });
+    }).catch(() => {
+      this.setState({
+        name: 'Boo',
+      });
+    })
+  }
+
   buildMonster = (genes) => {
 
     const headType = genes.charCodeAt(0) % 4;
@@ -39,35 +60,22 @@ class Monster extends React.Component {
 
   render () {
     const {
-      id,
-      name,
-      owner,
       genes,
-      generation,
     } = this.props;
+    const { name } = this.state;
 
     return (
-      <div>
-        <div className="monster-display">
-          <div className="monster-wrap">
-            { this.buildMonster(genes) }
-          </div>
+      <div className="monster-display">
+        <div className="monster-wrap">
+          { this.buildMonster(genes) }
         </div>
-        <h2>{ name }</h2>
-        <p>ID: { id }</p>
-        <p>Owner: { owner }</p>
-        <p>Generation: { generation }</p>
       </div>
     );
   }
 }
 
-Monster.propTypes = {
-  id: number.isRequired,
-  name: string.isRequired,
-  owner: string.isRequired,
-  generation: number.isRequired,
+MonsterImage.propTypes = {
   genes: string.isRequired,
 };
 
-export default Monster;
+export default MonsterImage;

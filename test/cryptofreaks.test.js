@@ -5,6 +5,8 @@ contract('CryptoFreaks', function(accounts) {
     const owner = accounts[0];
     const alice = accounts[1];
     const bob = accounts[2];
+    const oneFinney = web3.toWei(0.001, 'ether');
+    const fiveFinneys = web3.toWei(0.005, 'ether');
 
     var cryptoFreaks;
     beforeEach(function() {
@@ -46,72 +48,43 @@ contract('CryptoFreaks', function(accounts) {
         assert.equal(monster[2], owner, 'Monster owner should be contract owner');
     });
 
-    // it("should allow someone to purchase an item", async() => {
-    //     const supplyChain = await SupplyChain.deployed()
+    it("should fetch the list of generated monsters", async() => {
+        await cryptoFreaks.generateMonster({from: owner});
+        await cryptoFreaks.generateMonster({from: owner});
+        await cryptoFreaks.generateMonster({from: owner});
+        await cryptoFreaks.generateMonster({from: owner});
+        await cryptoFreaks.generateMonster({from: owner});
 
-    //     var eventEmitted = false
+        const numMonsters = await cryptoFreaks.totalSupply();
+        assert.equal(numMonsters, 5, 'Number of monsters should be five');
+        
+        const monsters = await cryptoFreaks.getAllMonsters();
+        assert.equal(monsters.length, 5, 'List of monsters should have a length of five');
+    });
 
-    //     var event = supplyChain.Sold()
-    //     await event.watch((err, res) => {
-    //         sku = res.args.sku.toString(10)
-    //         eventEmitted = true
-    //     })
+    it("should let bob buy a monster for the correct amount", async() => {
+        await cryptoFreaks.generateMonster({from: owner});
+        await cryptoFreaks.generateMonster({from: owner});
+        
+        await cryptoFreaks.buyMonster(0, { from : bob, value: fiveFinneys });
+        
+        let error = false;
+        try {
+            await cryptoFreaks.buyMonster(0, { from : bob, value: oneFinney });
+        } catch(e) {
+            error = true;
+        }
+        assert.equal(error, true, 'one finney is not enough');
 
-    //     const amount = web3.toWei(2, "ether")
+        await cryptoFreaks.buyMonster(1, { from : bob, value: fiveFinneys });
+        const bobMonsters = await cryptoFreaks.getMonstersOfOwner(bob);
+        assert.equal(bobMonsters.length, 2, 'got two monsters');
+    });
 
-    //     var aliceBalanceBefore = await web3.eth.getBalance(alice).toNumber()
-    //     var bobBalanceBefore = await web3.eth.getBalance(bob).toNumber()
-
-    //     await supplyChain.buyItem(sku, {from: bob, value: amount})
-
-    //     var aliceBalanceAfter = await web3.eth.getBalance(alice).toNumber()
-    //     var bobBalanceAfter = await web3.eth.getBalance(bob).toNumber()
-
-    //     const result = await supplyChain.fetchItem.call(sku)
-
-    //     assert.equal(result[3].toString(10), 1, 'the state of the item should be "Sold", which should be declared second in the State Enum')
-    //     assert.equal(result[5], bob, 'the buyer address should be set bob when he purchases an item')
-    //     assert.equal(eventEmitted, true, 'adding an item should emit a Sold event')
-    //     assert.equal(aliceBalanceAfter, aliceBalanceBefore + parseInt(price, 10), "alice's balance should be increased by the price of the item")
-    //     assert.isBelow(bobBalanceAfter, bobBalanceBefore - price, "bob's balance should be reduced by more than the price of the item (including gas costs)")
-    // })
-
-    // it("should allow the seller to mark the item as shipped", async() => {
-    //     const supplyChain = await SupplyChain.deployed()
-
-    //     var eventEmitted = false
-
-    //     var event = supplyChain.Shipped()
-    //     await event.watch((err, res) => {
-    //         sku = res.args.sku.toString(10)
-    //         eventEmitted = true
-    //     })
-
-    //     await supplyChain.shipItem(sku, {from: alice})
-
-    //     const result = await supplyChain.fetchItem.call(sku)
-
-    //     assert.equal(eventEmitted, true, 'adding an item should emit a Shipped event')
-    //     assert.equal(result[3].toString(10), 2, 'the state of the item should be "Shipped", which should be declared third in the State Enum')
-    // })
-
-    // it("should allow the buyer to mark the item as received", async() => {
-    //     const supplyChain = await SupplyChain.deployed()
-
-    //     var eventEmitted = false
-
-    //     var event = supplyChain.Received()
-    //     await event.watch((err, res) => {
-    //         sku = res.args.sku.toString(10)
-    //         eventEmitted = true
-    //     })
-
-    //     await supplyChain.receiveItem(sku, {from: bob})
-
-    //     const result = await supplyChain.fetchItem.call(sku)
-
-    //     assert.equal(eventEmitted, true, 'adding an item should emit a Shipped event')
-    //     assert.equal(result[3].toString(10), 3, 'the state of the item should be "Received", which should be declared fourth in the State Enum')
-    // })
+    // set for sale
+    // set price
+    // set not for sale
+    // gift
+    
 
 });

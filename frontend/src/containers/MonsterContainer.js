@@ -1,6 +1,6 @@
 import React from 'react';
 import { object } from 'prop-types';
-import Monster from 'components/Monster';
+import MonsterPage from './MonsterPage';
 import { CONTRACT_NAME } from 'config';
 
 class MonsterContainer extends React.Component {
@@ -21,13 +21,7 @@ class MonsterContainer extends React.Component {
     contract.methods.getMonster(monsterID).call().then((monster) => {
 
       this.setState({
-        monster: {
-          id: parseInt(monsterID, 10),
-          name: 'CryptoMon',
-          owner: monster.owner,
-          genes: String(monster.genes),
-          generation: parseInt(monster.generation, 10),
-        },
+        monster,
         loading: false,
       });
     }).catch(() => {
@@ -57,7 +51,7 @@ class MonsterContainer extends React.Component {
       <div>
         {
           !loading && monster ? (
-            <Monster {...monster} />
+            <MonsterPage {...monster} />
           ) : (
             <div>Loading monster</div>
           )

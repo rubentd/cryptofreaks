@@ -1,0 +1,81 @@
+@primary-color: #9b4dca;
+@light-grey: #fefefe;
+@medium-grey: #ccc;
+@dark-grey: #666;
+@darker-grey: #333;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nanum Gothic', sans-serif;
+  line-height: 1;
+  color: @darker-grey;
+}
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0 20px;
+    height: 40px;
+
+    & > li {
+      margin: 0 0 0 20px;
+    }
+  }
+}
+
+.main {
+  padding: 20px;
+}
+
+.brand-name {
+  display: flex;
+  align-items: center;
+  
+  & > img {
+    width: 40px;
+  }
+  
+  & > span {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}
+
+.home {
+  background-color: @light-grey;
+}
+
+.jumbo {
+  width: 400px;
+  margin: 80px auto;
+  text-align: center;
+
+  h4 {
+    margin: 40px 0;
+    color: @dark-grey;
+  }
+}
+
+.monster-display {
+  margin: 20px 0;
+  background-color: #dbccc7;
+  padding: 30px;
+  width: 100%;
+  border-radius: 10px; 
+
+  .monster-wrap {
+    width: 200px;
+    height: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}

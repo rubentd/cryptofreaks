@@ -1,6 +1,6 @@
 ## Collectible.
 ## Breedable.
-## Disgusting.
+## Horrible.
 
 ### Collect and breed digital creatures
 

@@ -20,21 +20,21 @@ class Eyes extends React.Component {
       <div className="monster-part monster-eyes">
         {
           type === eyeTypes.CUTE ? (
-            <img src={cuteEyes} />
+            <img src={cuteEyes} alt="eyes" />
           ) : type === eyeTypes.MEAN ? (
-            <img src={meanEyes} />
+            <img src={meanEyes} alt="eyes" />
           ) : type === eyeTypes.DEAD ? (
-            <img src={deadEyes} />
+            <img src={deadEyes} alt="eyes" />
           ) : type === eyeTypes.HAPPY ? (
-            <img src={happyEyes} />
+            <img src={happyEyes} alt="eyes" />
           ) : type === eyeTypes.MORTY ? (
-            <img src={mortyEyes} />
+            <img src={mortyEyes} alt="eyes" />
           ) : type === eyeTypes.SINGLE ? (
-            <img src={singleEye} />
+            <img src={singleEye} alt="eyes" />
           ) : type === eyeTypes.INSECT ? (
-            <img src={insectEyes} />
+            <img src={insectEyes} alt="eyes" />
           ) : type === eyeTypes.X ? (
-            <img src={xEyes} />
+            <img src={xEyes} alt="eyes" />
           ) : null
         }
       </div>

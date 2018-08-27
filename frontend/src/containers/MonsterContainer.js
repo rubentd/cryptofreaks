@@ -1,49 +1,73 @@
 import React from 'react';
+import { object } from 'prop-types';
 import Monster from 'components/Monster';
+import { CONTRACT_NAME } from 'config';
 
 class MonsterContainer extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       monster: null,
+      loading: true,
+      error: false,
+      monsterID: props.match.params.monsterID,
     };
   }
 
   componentWillMount() {
-    this.setState({
-      monster: {
-        id: 1,
-        name: 'CryptoMon',
-        owner: '0x07e77c8739614cba5bd62be99c7e8317c25383ff',
-        genes: '0111111122c',
-        generation: 0,
-      },
+    const contract = this.context.drizzle.contracts[CONTRACT_NAME];
+    const { monsterID } = this.state;
+
+    contract.methods.getMonster(monsterID).call().then((monster) => {
+
+      this.setState({
+        monster: {
+          id: parseInt(monsterID, 10),
+          name: 'CryptoMon',
+          owner: monster.owner,
+          genes: String(monster.genes),
+          generation: parseInt(monster.generation, 10),
+        },
+        loading: false,
+      });
+    }).catch(() => {
+      this.setState({
+        loading: false,
+        error: true,
+      });
     });
   }
 
   render() {
     const {
-      monster: {
-        id,
-        name,
-        owner,
-        genes,
-        generation,
-      },
+      monster,
+      error,
+      loading,
     } = this.state;
 
     return (
       <div>
-        <Monster
-          id={id}
-          name={name}
-          owner={owner}
-          genes={genes}
-          generation={generation}
-        />
+        {
+          error && (
+            <div className="error">
+              Monster not found
+            </div>
+          )
+        }
+        {
+          !loading && monster ? (
+            <Monster {...monster} />
+          ) : (
+            <div>Loading monster</div>
+          )
+        }
       </div>
     )
   }
 }
+
+MonsterContainer.contextTypes = {
+  drizzle: object,
+};
 
 export default MonsterContainer;

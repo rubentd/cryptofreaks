@@ -54,3 +54,17 @@ export const topTypes = {
   CAT: 3,
   HORN: 4,
 };
+
+export const COLORS = [
+  '#f2616f',
+  '#80e068',
+  '#b20823',
+  '#125a80',
+  '#f39b5a',
+  '#c941ec',
+  '#e233a4',
+  '#9eaf8d',
+  '#d3ab28',
+  '#833556',
+  '#60a6c8',
+];

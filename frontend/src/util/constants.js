@@ -5,25 +5,13 @@ export const headTypes = {
   WIDE: 3,
 };
 
-export const headSize = {
-  SMALL: 0,
-  MEDIUM: 1,
-  LARGE: 2,
-}
-
 export const bodyTypes = {
   CIRCULAR: 0,
   HAIRY: 1,
   LONG: 2,
 };
 
-export const bodySize = {
-  SMALL: 0,
-  MEDIUM: 1,
-  LARGE: 2,
-};
-
-export const eyesaType = {
+export const eyeTypes = {
   CUTE: 0,
   MEAN: 1,
   DEAD: 2,
@@ -51,26 +39,18 @@ export const armTypes = {
   HAND: 2,
   SPIKE: 3,
   INSECT: 4,
-  CLAW: 5,
-  STRONG: 6,
-  DOUBLE: 7,
 };
 
 export const legTypes = {
   CHUBBY: 0,
   TENTACLES: 1,
-  CLAWS: 2,
-  FEET: 3,
-  HORSE: 4,
+  HORSE: 2,
 };
 
 export const topTypes = {
   NONE: 0,
-  ANGEL: 1,
-  DEVIL: 2,
-  ANTENNAS: 3,
-  CAT: 4,
-  HORN: 5,
-  SPIKES: 6,
-  HAIR: 7,
+  DEVIL: 1,
+  ANTENNAS: 2,
+  CAT: 3,
+  HORN: 4,
 };

@@ -15,7 +15,8 @@ class MonsterContainer extends React.Component {
         id: 1,
         name: 'CryptoMon',
         owner: '0x07e77c8739614cba5bd62be99c7e8317c25383ff',
-        genes: '010200000FFF'
+        genes: '0000000a5a',
+        generation: 0,
       },
     });
   }

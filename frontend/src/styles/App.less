@@ -77,5 +77,53 @@ header {
     height: 400px;
     margin: 0 auto;
     text-align: center;
+    position: relative;
+  }
+
+  .monster-part {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+  }
+
+  .monster-head {
+    margin-left: -100px;
+    margin-top: -190px;
+  }
+
+  .monster-body {
+    margin-left: -100px;
+    margin-top: -20px;
+  }
+
+  .monster-arm {
+    width: 120px;
+    margin-top: -15px;
+    margin-left: -180px;
+
+    &.right {
+      transform: scaleX(-1);
+      margin-left: 60px;
+    }
+  }
+
+  .monster-legs {
+    margin-left: -75px;
+    margin-top: 125px;
+    width: 150px;
+  }
+
+  .monster-eyes {
+    width: 100px;
+    margin-top: -100px;
+    margin-left: -50px;
+  }
+
+  .monster-mouth {
+    width: 80px;
+    margin-top: -75px;
+    margin-left: -40px;
   }
 }

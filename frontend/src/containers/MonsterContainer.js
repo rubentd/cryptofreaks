@@ -45,15 +45,16 @@ class MonsterContainer extends React.Component {
       loading,
     } = this.state;
 
+    if (error) {
+      return (
+        <h1>
+          Monster not found
+        </h1>
+      )
+    }
+
     return (
       <div>
-        {
-          error && (
-            <div className="error">
-              Monster not found
-            </div>
-          )
-        }
         {
           !loading && monster ? (
             <Monster {...monster} />

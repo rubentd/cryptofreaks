@@ -33,7 +33,7 @@ Make sure you have all the necessary tools installed: truffle, yarn/npm, ganache
 ## Run deployed version 
 
 1. Switch Metamask to Rinkeby testnet
-2. Go to http://rubentd.com/cryptofreaks
+2. Go to https://cryptofreaks.herokuapp.com/
 
 ## Deployed address (Rinkeby)
 CryptoFreaks: 0xb7f63b4c55870736eaabd4497942ed2c51da5094

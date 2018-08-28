@@ -1,2 +1,2 @@
 export const CONTRACT_NAME = 'CryptoFreaks';
-export const CONTRACT_ADDRESS = '0x2e4f935c2a6c8fd90b236c86eb7a8eeb03c498fb';
+export const CONTRACT_ADDRESS = '0xb7f63b4c55870736eaabd4497942ed2c51da5094';

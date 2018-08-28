@@ -255,7 +255,7 @@ class MonsterPage extends React.Component {
           txInProgress && (
             <div className="info" style={{ position: 'absolute', top: '50%' }}>
               You have a transaction in progress for this monster, please come back later.
-              You can check its progress here: <a href={`https://ropsten.etherscan.io/search?q=${txHash}`} target="_blank">{ txHash }</a>
+              You can check its progress here: <a href={`https://rinkeby.etherscan.io/search?q=${txHash}`} target="_blank">{ txHash }</a>
             </div>
           )
         }

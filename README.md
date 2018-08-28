@@ -32,5 +32,18 @@ Make sure you have all the necessary tools installed: truffle, yarn/npm, ganache
 
 ## Run deployed version 
 
-1. Switch Metamask to Ropsten (Make sure you have Ropsten ETH)
+1. Switch Metamask to Rinkeby testnet
 2. Go to http://rubentd.com/cryptofreaks
+
+## Deployed address (Rinkeby)
+CryptoFreaks: 0xb7f63b4c55870736eaabd4497942ed2c51da5094
+
+
+## Clarification about ethpm
+
+It was not possible to install the example-package-owned at this time:
+
+![copy contract address](docs/ethpm_error.png)
+
+Instead I used a openzeppelin's Ownable.sol which is equivalent.
+

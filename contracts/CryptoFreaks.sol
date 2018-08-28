@@ -168,16 +168,9 @@ contract CryptoFreaks is Pausable {
      * Put a monster in the market
      * @param _monsterID id of the monster to put on sale
      */
-    function putOnSale(uint _monsterID) public view onlyMonsterOwner(_monsterID) {
+    function putOnSale(uint _monsterID, uint _price) public view onlyMonsterOwner(_monsterID) {
         monsters[_monsterID].forSale = true;
-    }
-
-    /*
-     * Set the price of my monster
-     * @param _monsterID id of the monster to put on sale
-     */
-    function setPrice(uint _monsterID, uint price) public view isForSale(_monsterID) onlyMonsterOwner(_monsterID) {
-        monsters[_monsterID].price = price;
+        monsters[_monsterID].price = _price;
     }
 
     /*

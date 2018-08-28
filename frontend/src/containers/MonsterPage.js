@@ -1,8 +1,9 @@
 import React from 'react';
-import { bool, string } from 'prop-types';
+import { bool, string, object } from 'prop-types';
 import MonsterImage from 'components/MonsterImage';
 import generateName from 'util/generateName';
 import '@fortawesome/fontawesome-free/js/all';
+import { CONTRACT_NAME } from 'config';
 
 class MonsterPage extends React.Component {
   static propTypes = {
@@ -14,6 +15,36 @@ class MonsterPage extends React.Component {
     price: string.isRequired,
   };
 
+  constructor(){
+    super();
+    this.state = {
+      error: false,
+      txInProgress: false,
+      tx: '',
+    };
+  }
+
+  buyMonster = () => {
+    const { id, price } = this.props;
+    const contract = this.context.drizzle.contracts[CONTRACT_NAME];
+    const currentUser = window.web3.eth.defaultAccount; 
+
+    contract.methods.buyMonster(id).send({ 
+      from: currentUser,
+      value: price,
+    }).then((result) => {
+      this.setState({
+        txInProgress: true,
+        txHash: result.transactionHash,
+      });
+    }).catch(() => {
+      this.setState({
+        error: true,
+        txInProgress: false,
+      });
+    });
+  }
+
   render() {
     const {
       id,
@@ -23,6 +54,7 @@ class MonsterPage extends React.Component {
       price,
       owner,
     } = this.props;
+    const { txInProgress, txHash } = this.state;
 
     const isMine = owner.toLowerCase() === window.web3.eth.defaultAccount.toLowerCase();
 
@@ -40,44 +72,48 @@ class MonsterPage extends React.Component {
           )
         }
 
-        <ul className="monster-options">
-          {
-            isMine && !forSale && (
-              <li>
-                <button>
-                  Sell &nbsp;<i className="fa fa-tag"></i>
-                </button>
-              </li>
-            )
-          }
-          {
-            isMine && forSale && (
-              <li>
-                <button>
-                  Stop Sale &nbsp;<i className="fa fa-tag"></i>
-                </button>
-              </li>
-            )
-          }
-          {
-            isMine && (
-              <li>
-                <button>
-                  Gift &nbsp;<i className="fa fa-gift"></i>
-                </button>
-              </li>
-            )
-          }
-          {
-            !isMine && (
-              <li>
-                <button>
-                  Buy ({ window.web3.fromWei(parseInt(price, 10)) } ETH) &nbsp;<i className="fab fa-ethereum"></i>
-                </button>
-              </li>
-            )
-          }
-        </ul>
+        {
+          !txInProgress && (
+            <ul className="monster-options">
+              {
+                isMine && !forSale && (
+                  <li>
+                    <button>
+                      Sell &nbsp;<i className="fa fa-tag"></i>
+                    </button>
+                  </li>
+                )
+              }
+              {
+                isMine && forSale && (
+                  <li>
+                    <button>
+                      Stop Sale &nbsp;<i className="fa fa-tag"></i>
+                    </button>
+                  </li>
+                )
+              }
+              {
+                isMine && (
+                  <li>
+                    <button>
+                      Gift &nbsp;<i className="fa fa-gift"></i>
+                    </button>
+                  </li>
+                )
+              }
+              {
+                !isMine && forSale && (
+                  <li>
+                    <button onClick={this.buyMonster}>
+                      Buy ({ window.web3.fromWei(parseInt(price, 10)) } ETH) &nbsp;<i className="fab fa-ethereum"></i>
+                    </button>
+                  </li>
+                )
+              }
+            </ul>
+          )
+        }
 
         <MonsterImage genes={genes}/>
         <div className="monster-info">
@@ -92,9 +128,22 @@ class MonsterPage extends React.Component {
             { isMine && <span> (You)</span> }
           </div>
         </div>
+
+        {
+          txInProgress && (
+            <div className="info" style={{ position: 'absolute', top: '50%' }}>
+              You have a transaction in progress for this monster, please come back later.
+              You can check its progress here: <a href={`https://ropsten.etherscan.io/search?q=${txHash}`} target="_blank">{ txHash }</a>
+            </div>
+          )
+        }
       </div>
     );
   }
 }
+
+MonsterPage.contextTypes = {
+  drizzle: object,
+};
 
 export default MonsterPage;

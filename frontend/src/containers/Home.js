@@ -13,7 +13,7 @@ class Home extends React.Component {
               <h1>Tradeable.</h1>
               <h1>Horrible.</h1>
               <h4>
-                Collect and breed crypto monsters
+                Collect and trade crypto monsters
               </h4>
               <Link to="catalogue" className="button button-large">
                 Start now

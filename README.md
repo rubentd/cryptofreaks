@@ -1,8 +1,8 @@
 ## Collectible.
-## Breedable.
+## Tradeable.
 ## Horrible.
 
-### Collect and breed digital creatures
+### Collect and trade digital creatures
 
 This is a game centered around breedable and collectible monsters. Each monster is one-of-a-kind and 100% owned by you; it cannot be replicated, taken away, or destroyed.
 

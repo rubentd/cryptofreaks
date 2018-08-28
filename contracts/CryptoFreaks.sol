@@ -168,7 +168,7 @@ contract CryptoFreaks is Pausable {
      * Put a monster in the market
      * @param _monsterID id of the monster to put on sale
      */
-    function putOnSale(uint _monsterID, uint _price) public view onlyMonsterOwner(_monsterID) {
+    function putOnSale(uint _monsterID, uint _price) public onlyMonsterOwner(_monsterID) whenNotPaused() {
         monsters[_monsterID].forSale = true;
         monsters[_monsterID].price = _price;
     }
@@ -177,14 +177,14 @@ contract CryptoFreaks is Pausable {
      * Monster is no longer for sale
      * @param _monsterID id of the monster to remove from sale
      */
-    function removeFromSale(uint _monsterID) public view onlyMonsterOwner(_monsterID) {
+    function removeFromSale(uint _monsterID) public onlyMonsterOwner(_monsterID) whenNotPaused(){
         monsters[_monsterID].forSale = false;
     }
 
     /*
      * Buy monster
      */
-    function buyMonster(uint _monsterID) public payable isForSale(_monsterID) paidEnough(_monsterID) {
+    function buyMonster(uint _monsterID) public payable isForSale(_monsterID) paidEnough(_monsterID) whenNotPaused(){
         address owner = monsters[_monsterID].owner;
         emit MonsterSold(_monsterID);
         monsters[_monsterID].forSale = false;
@@ -200,7 +200,7 @@ contract CryptoFreaks is Pausable {
      * @param _monsterID id of monster I'm giving away
      * @param _user address of user to receive monster
      */
-    function giftMonster(uint _monsterID, address _user) public payable onlyMonsterOwner(_monsterID) {
+    function giftMonster(uint _monsterID, address _user) public payable onlyMonsterOwner(_monsterID) whenNotPaused(){
         emit MonsterGifted(_monsterID);
         monsters[_monsterID].forSale = false;
         monsters[_monsterID].owner = _user;

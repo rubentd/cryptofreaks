@@ -31,4 +31,3 @@ Make sure you have all the necessary tools installed: truffle, yarn/npm, ganache
 
 1. Switch Metamask to Ropsten (Make sure you have Ropsten ETH)
 2. Go to http://rubentd.com/cryptofreaks
-3. Enjoy!

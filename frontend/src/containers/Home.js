@@ -10,7 +10,7 @@ class Home extends React.Component {
           <div className="column">
             <div className="jumbo">
               <h1>Collectible.</h1>
-              <h1>Breedable.</h1>
+              <h1>Tradeable.</h1>
               <h1>Horrible.</h1>
               <h4>
                 Collect and breed crypto monsters

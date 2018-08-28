@@ -32,6 +32,10 @@ header {
   }
 }
 
+h1 {
+  margin-bottom: 40px;
+}
+
 .main {
   padding: 20px;
 }
@@ -68,7 +72,7 @@ header {
 .monster-display {
   margin: 20px 0;
   background-color: #dbccc7;
-  padding: 30px;
+  padding: 40px 30px;
   width: 100%;
   border-radius: 10px;
 
@@ -196,11 +200,90 @@ header {
   }
 }
 
+.monster-item {
+  position: relative;
+  margin-bottom: 10px;
+
+  &:hover {
+    .monster-sale-info {
+      opacity: 1;
+    }
+  }
+}
+
+.monster-sale-info {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 120px;
+  margin-left: -60px;
+  text-align: center;
+  color: @darker-grey;
+  background-color: white;
+  padding: 4px;
+  border-radius: 5px;
+  opacity: .8;
+}
+
+.monster-info {
+  margin-top: -10px;
+  color: @darker-grey;
+  
+  .monster-name {
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+}
+
+.monster-page {
+  position: relative;
+  
+  .monster-options {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    & > li {
+      display: inline-block;
+      margin-left: 10px;
+    }
+  }
+
+  .monster-sale-info {
+    left: 15px;
+    top: 15px;
+    margin: 0;
+    width: auto;
+    padding: 10px;
+  }
+
+  .monster-info {
+    margin-top: 20px;
+
+    .monster-name {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
 .warning {
   background-color: rgb(240, 241, 177);
   border: rgb(145, 144, 81);
   padding: 50px;
-  margin: 50px;
+  margin: 50px 0;
+  width: 100%;
+}
+
+.info {
+  background-color: rgb(192, 243, 250);
+  border: rgb(78, 103, 119);
+  padding: 50px;
+  margin: 50px 0;
   width: 100%;
 }
 

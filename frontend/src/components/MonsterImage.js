@@ -1,7 +1,6 @@
 import React from 'react';
 import { bool, string } from 'prop-types';
 import Color from 'color';
-import wuami from 'wuami';
 import Head from 'components/Head';
 import Body from 'components/Body';
 import Legs from 'components/Legs';
@@ -12,26 +11,6 @@ import Top from 'components/Top';
 import { COLORS } from 'util/constants';
 
 class MonsterImage extends React.Component {
-  constructor(){
-    super();
-    this.state = {
-      name: '',
-    };
-  }
-
-  componentWillMount() {
-    const { genes } = this.props;
-    wuami(genes).then((name) => {
-      this.setState({
-        name,
-      });
-    }).catch(() => {
-      this.setState({
-        name: 'Boo',
-      });
-    })
-  }
-
   buildMonster = (genes) => {
 
     const headType = genes.charCodeAt(0) % 4;

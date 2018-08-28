@@ -27,6 +27,8 @@ Make sure you have all the necessary tools installed: truffle, yarn/npm, ganache
 7. Make sure Metamask is connected to the local network (usually trough the RPC server: http://127.0.0.1:8545)
 8. Similar to Cryptokitties, you will be able to browse monsters, buy them, sell them, and gift to other users (no breeding function at the time)  
 
+![copy contract address](docs/preview.png)
+
 ## Run deployed version 
 
 1. Switch Metamask to Ropsten (Make sure you have Ropsten ETH)

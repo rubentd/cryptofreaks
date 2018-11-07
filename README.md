@@ -18,15 +18,10 @@ Make sure you have all the necessary tools installed: truffle, yarn/npm, ganache
 1. Run your own local ethereum network using Ganache.
 2. Clone this repo and go to that folder for the next steps.
 3. Delete `build` folder if present (for rebuilds)
-4. Run `make rebuild` to compile the contracts using truffle.
-5. Copy the contract address generated during the deploy step (see image) this will be needed to setup the frontend
-6. open `frontend/src/config.js` and copy the previous value for the constant `CONTRACT_ADDRESS`
-
-![copy contract address](docs/contract_address.png)
-
-7. from the `frontend` directory run `yarn install` and then `yarn start`. Then you should be able to test the app on your browser.
-8. Make sure Metamask is connected to the local network (usually trough the RPC server: http://127.0.0.1:8545)
-9. Similar to Cryptokitties, you will be able to browse monsters, buy them, sell them, and gift to other users (no breeding function at the time)  
+4. Run `make rebuild` to compile the contracts using truffle, and setup the contract address to the frontend config.
+5. from the `frontend` directory run `yarn install` and then `yarn start`. Then you should be able to test the app on your browser.
+6. Make sure Metamask is connected to the local network (usually trough the RPC server: http://127.0.0.1:8545)
+7. Similar to Cryptokitties, you will be able to browse monsters, buy them, sell them, and gift to other users (no breeding function at the time)  
 
 ![copy contract address](docs/preview.png)
 

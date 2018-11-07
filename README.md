@@ -15,10 +15,10 @@ You can buy, sell and gift cryptofreaks to other players
 
 Make sure you have all the necessary tools installed: truffle, yarn/npm, ganache-cli 
 
-1. Run your own local ethereum network using Ganache. Copy the first account address, to be used as owner. 
+1. Run your own local ethereum network using Ganache.
 2. Clone this repo and go to that folder for the next steps.
 3. Delete `build` folder if present (for rebuilds)
-4. Run `OWNER=<owner_address> make rebuild` to compile the contracts using truffle. Replace <owner_address> with the one you copied on the previous step
+4. Run `make rebuild` to compile the contracts using truffle.
 5. Copy the contract address generated during the deploy step (see image) this will be needed to setup the frontend
 6. open `frontend/src/config.js` and copy the previous value for the constant `CONTRACT_ADDRESS`
 
